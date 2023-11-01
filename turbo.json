@@ -1,0 +1,20 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalEnv": ["NODE_ENV", "CORS_ORIGIN", "PORT"],
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [".next/**", "!.next/cache/**"]
+    },
+    "lint": {},
+    "dev": {
+      "cache": false,
+      "persistent": true,
+      "env": [
+        "FLARE_SOLVER_BASE_URL",
+        "YGG_PASSKEY"
+      ],
+      "dotEnv": [".env.development.local", ".env.local"]
+    }
+  }
+}

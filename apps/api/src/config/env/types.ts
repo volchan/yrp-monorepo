@@ -1,17 +1,23 @@
 import { z } from 'zod'
 
+const isValidPort = (val: string, ctx: z.RefinementCtx) => {
+  const parsed = parseInt(val)
+  if (isNaN(parsed)) {
+    const message = val === undefined ? 'is missing' : 'must be a number'
+    
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message,
+    })
+
+    return z.NEVER
+  }
+  return parsed
+}
+
 export const appConfigSchema = z.object({
   NODE_ENV: z.enum(['development', 'production', 'staging', 'test']),
-  CORS_ORIGIN: z.string().default('http://[::1]'),
-  FLARE_SOLVER_BASE_URL: z.string(),
-  PORT: z.string().default('3000'),
+  PORT: z.string().transform((val, ctx) => isValidPort(val, ctx)),
+  FLARE_SOLVER_BASE_URL: z.string().url(),
   YGG_PASSKEY: z.string(),
 })
-
-type AppConfig = z.infer<typeof appConfigSchema>
-
-export type RequiredConfig = Optional<AppConfig, KeysWithFallbackValue>
-
-type KeysWithFallbackValue = 'NODE_ENV' | 'PORT' | 'CORS_ORIGIN'
-
-type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>

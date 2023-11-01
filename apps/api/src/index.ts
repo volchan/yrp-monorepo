@@ -12,9 +12,9 @@ import morganMiddleware from '@middlewares/morgan.middleware'
 const app = express()
 
 app.use(helmet())
+app.use(cors())
 app.use(json())
 app.use(urlencoded({ extended: true }))
-app.use(cors())
 app.use(morganMiddleware)
 app.use(AppRouter)
 

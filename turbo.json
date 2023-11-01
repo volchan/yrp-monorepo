@@ -15,6 +15,14 @@
         "YGG_PASSKEY"
       ],
       "dotEnv": [".env.development.local", ".env.local"]
+    },
+    "start": {
+      "dependsOn": ["^build"],
+      "env": [
+        "FLARE_SOLVER_BASE_URL",
+        "YGG_PASSKEY"
+      ],
+      "dotEnv": [".env.production.local", ".env.local"]
     }
   }
 }

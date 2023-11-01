@@ -1,0 +1,13 @@
+{
+  "name": "client",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {},
+  "dependencies": {
+    "eslint-config-custom": "*",
+    "prettier-config-custom": "*"
+  },
+  "devDependencies": {
+    "tsconfig": "*"
+  }
+}

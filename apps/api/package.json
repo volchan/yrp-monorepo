@@ -6,12 +6,12 @@
     "dev": "nodemon -r tsconfig-paths/register -r dotenv/config src/index.ts",
     "build": "rimraf ./dist && tsc --project tsconfig.json && tsc-alias -p tsconfig.json",
     "serve": "node dist/index.js",
-    "lint": "npm eslint && npm prettier",
-    "lint:fix": "npm eslint:fix && npm prettier:fix",
-    "eslint": "eslint --ext .js,.ts,.jsx,.tsx",
-    "eslint:fix": "eslint --fix --ext .js,.ts,.jsx,.tsx",
-    "prettier": "prettier --check './**/*.{js,jsx,ts,tsx}'",
-    "prettier:fix": "prettier --write './**/*.{js,jsx,ts,tsx}'"
+    "lint": "npm run lint:eslint & npm run lint:prettier",
+    "lint:fix": "npm run lint:eslint:fix & npm run lint:prettier:fix",
+    "lint:eslint": "npx eslint --ext .js,.ts",
+    "lint:eslint:fix": "npx eslint --fix --ext .js,.ts",
+    "lint:prettier": "npx prettier --check './**/*.{js,ts}'",
+    "lint:prettier:fix": "npx prettier --write './**/*.{js,ts}'"
   },
   "dependencies": {
     "@types/morgan": "^1.9.7",

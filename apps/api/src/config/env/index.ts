@@ -4,7 +4,7 @@ import { appConfigSchema } from './types'
 const loadEnv = () => {
   logger.info('🔄 Loading environment variables')
   const parsedEnv = appConfigSchema.safeParse(process.env)
-  
+
   logger.info('🔍 Checking required environment variables')
   if (!parsedEnv.success) {
     const errorMessage = `❌ Missing required environment variables:

@@ -20,7 +20,7 @@ app.use(AppRouter)
 
 app.listen(appEnv.PORT, () => {
   logger.info(`🚀 Starting app in ${appEnv.NODE_ENV}`)
-  
+
   switch (appEnv.NODE_ENV) {
     case 'development':
     case 'test':

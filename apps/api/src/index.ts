@@ -1,7 +1,9 @@
 // import axios from 'axios'
-import helmet from 'helmet'
-import express, { json, urlencoded } from 'express'
+import bodyParser from 'body-parser'
+import cookies from 'cookie-parser'
 import cors from 'cors'
+import helmet from 'helmet'
+import express, { urlencoded } from 'express'
 // import { parse as pttParse, DefaultParserResult } from 'parse-torrent-title'
 // import { XMLParser } from 'fast-xml-parser'
 import { appEnv } from '@config/env'
@@ -13,7 +15,9 @@ const app = express()
 
 app.use(helmet())
 app.use(cors())
-app.use(json())
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
+app.use(cookies())
 app.use(urlencoded({ extended: true }))
 app.use(morganMiddleware)
 app.use(AppRouter)

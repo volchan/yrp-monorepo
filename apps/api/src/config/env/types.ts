@@ -20,4 +20,5 @@ export const appConfigSchema = z.object({
   PORT: z.string().transform((val, ctx) => isValidPort(val, ctx)),
   FLARE_SOLVER_BASE_URL: z.string().url(),
   YGG_PASSKEY: z.string(),
+  DATABASE_URL: z.string().url(),
 })

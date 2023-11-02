@@ -1,0 +1,23 @@
+//🧩Don't Edit this file.✨Generated in Thu Nov 02 2023 04:26:23 GMT+0100 (UTC+01:00)✨
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+
+  uuid         String @id @default(uuid())
+  email        String @unique
+  passwordHash String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([email])
+  @@map("users")
+}

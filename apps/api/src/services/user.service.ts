@@ -28,12 +28,10 @@ export const findUniqueUser = async (where: Prisma.UserWhereUniqueInput, select?
 }
 
 export const signTokens = async (user: Prisma.UserCreateInput) => {
-  // 1. Create Session
   redisClient.set(`${user.id}`, JSON.stringify(user), {
     EX: config.redisCacheExpiresIn * 60,
   })
 
-  // 2. Create Access and Refresh tokens
   const access_token = signJwt({ sub: user.id }, 'JWT_ACCESS_TOKEN_PRIVATE_KEY', {
     expiresIn: `${config.accessTokenExpiresIn}m`,
   })

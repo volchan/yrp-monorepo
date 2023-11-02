@@ -14,7 +14,3 @@ export default class AppError extends Error {
     Error.captureStackTrace(this, this.constructor)
   }
 }
-
-export const globalErrorHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
-  res.status(401).send({ error: err })
-}

@@ -1,7 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 import { logger } from '@utils/logger'
 
-
 const db = new PrismaClient({
   log: [
     {
@@ -24,9 +23,9 @@ const db = new PrismaClient({
 })
 
 db.$on('query', e => {
-  logger.log('psql', `Query: ${e.query}`)
-  logger.log('psql', `Params: ${e.params}`)
-  logger.log('psql', `Duration: ${e.duration}ms`)
+  logger.info(`Query: ${e.query}`)
+  logger.info(`Params: ${e.params}`)
+  logger.info(`Duration: ${e.duration}ms`)
 })
 
 export default db

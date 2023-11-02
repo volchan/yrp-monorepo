@@ -13,6 +13,13 @@ export const createUser = async (input: Prisma.UserCreateInput) => {
   })) as User
 }
 
+export const updateUser = async (where: Prisma.UserWhereUniqueInput, input: Prisma.UserUpdateInput) => {
+  return (await db.user.update({
+    where,
+    data: input,
+  })) as User
+}
+
 export const findUniqueUser = async (where: Prisma.UserWhereUniqueInput, select?: Prisma.UserSelect) => {
   return (await db.user.findUnique({
     where,

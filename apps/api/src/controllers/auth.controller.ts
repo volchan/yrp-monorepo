@@ -1,14 +1,16 @@
-import crypto from 'crypto'
 import { CookieOptions, NextFunction, Request, Response } from 'express'
-import bcrypt from 'bcryptjs'
-import { LoginUserInput, CreateUserInput } from '@schemas/user.schema'
-import { createUser, findUniqueUser, signTokens } from '@services/user.service'
-import { Prisma } from '@prisma/client'
+
 import config from '@config/redis'
 import AppError from '@utils/app-error'
+import { Prisma } from '@prisma/client'
 import redisClient from '@utils/connect-redis'
 import { signJwt, verifyJwt } from '@utils/jwt'
-import { log } from 'console'
+import { LoginUserInput, CreateUserInput } from '@schemas/user.schema'
+import { createUser, findUniqueUser, signTokens } from '@services/user.service'
+import { generateHashedPassword, generateVerificationCode, validatePassword } from '@utils/bcrypt'
+import UserDTO from '@dtos/user.dto'
+
+const userDTO = new UserDTO()
 
 const cookiesOptions: CookieOptions = {
   httpOnly: true,
@@ -31,21 +33,16 @@ const refreshTokenCookieOptions: CookieOptions = {
 
 export const registerUserHandler = async (req: Request<{}, {}, CreateUserInput>, res: Response, next: NextFunction) => {
   try {
-    const hashedPassword = await bcrypt.hash(req.body.password, 12)
-
-    const verifyCode = crypto.randomBytes(32).toString('hex')
-    const verificationCode = crypto.createHash('sha256').update(verifyCode).digest('hex')
-
     const user = await createUser({
       email: req.body.email.toLowerCase(),
-      passwordHash: hashedPassword,
-      verificationCode,
+      passwordHash: await generateHashedPassword(req.body.password),
+      verificationCode: generateVerificationCode(),
     })
 
     res.status(201).json({
       status: 'success',
       data: {
-        user,
+        user: userDTO.toJson(user),
       },
     })
   } catch (err: any) {
@@ -70,7 +67,7 @@ export const loginUserHandler = async (req: Request<{}, {}, LoginUserInput>, res
       { id: true, email: true, verified: true, passwordHash: true },
     )
 
-    if (!user || !(await bcrypt.compare(password, user.passwordHash))) {
+    if (!user || !(await validatePassword(password, user.passwordHash))) {
       return next(new AppError(400, 'Invalid email or password'))
     }
 
@@ -94,7 +91,6 @@ export const loginUserHandler = async (req: Request<{}, {}, LoginUserInput>, res
 
 export const refreshAccessTokenHandler = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    log(req.cookies)
     const refresh_token = req.cookies.refresh_token
 
     const message = 'Could not refresh access token'

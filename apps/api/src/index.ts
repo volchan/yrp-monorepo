@@ -1,3 +1,5 @@
+import 'reflect-metadata'
+
 // import axios from 'axios'
 import bodyParser from 'body-parser'
 import cookies from 'cookie-parser'

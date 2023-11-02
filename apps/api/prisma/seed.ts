@@ -1,27 +1,27 @@
 import { logger } from '@utils/logger'
 import db from '@utils/db'
+import { generateHashedPassword } from '@utils/bcrypt'
 
 async function main() {
   logger.info('🌱 Seeding database...')
 
-  const alice = await db.user.upsert({
+  await db.user.upsert({
     where: { email: 'alice@prisma.io' },
     update: {},
     create: {
       email: 'alice@prisma.io',
-      passwordHash: 'password'
+      passwordHash: await generateHashedPassword('password'),
     },
-  })
+  }).
 
-  const bob = await db.user.upsert({
+  await db.user.upsert({
     where: { email: 'bob@prisma.io' },
     update: {},
     create: {
       email: 'bob@prisma.io',
-      passwordHash: 'password'
+      passwordHash: await generateHashedPassword('password'),
     },
   })
-  console.log({ alice, bob })
 
   logger.info('✅ Database successfully seeded')
 }

@@ -10,11 +10,11 @@
       "@controllers/*": [
         "controllers/*"
       ],
+      "@dtos/*": [
+        "dtos/*"
+      ],
       "@middlewares/*": [
         "middlewares/*"
-      ],
-      "@models/*": [
-        "models/*"
       ],
       "@routes/*": [
         "routes/*"

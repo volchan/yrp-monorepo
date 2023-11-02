@@ -1,4 +1,4 @@
-//🧩Don't Edit this file.✨Generated in Thu Nov 02 2023 12:05:24 GMT+0100 (Central European Standard Time)✨
+//🧩Don't Edit this file.✨Generated in Thu Nov 02 2023 15:38:04 GMT+0100 (Central European Standard Time)✨
 
 generator client {
   provider = "prisma-client-js"
@@ -9,14 +9,21 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+generator prismaClassGenerator {
+  provider = "prisma-class-generator"
+  output   = "../src/generated/prisma-client"
+}
+
 model User {
   id               String   @id @default(uuid())
   email            String   @unique
   passwordHash     String
   verified         Boolean? @default(false)
   verificationCode String?  @unique @db.Text
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
+  ygg_passkey      String?  @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("users")
 }

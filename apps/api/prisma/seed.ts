@@ -12,7 +12,7 @@ async function main() {
       email: 'alice@prisma.io',
       passwordHash: await generateHashedPassword('password'),
     },
-  }).
+  })
 
   await db.user.upsert({
     where: { email: 'bob@prisma.io' },

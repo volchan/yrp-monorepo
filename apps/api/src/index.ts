@@ -1,5 +1,3 @@
-import 'reflect-metadata'
-
 // import axios from 'axios'
 import bodyParser from 'body-parser'
 import cookies from 'cookie-parser'
@@ -8,10 +6,10 @@ import helmet from 'helmet'
 import express, { urlencoded } from 'express'
 // import { parse as pttParse, DefaultParserResult } from 'parse-torrent-title'
 // import { XMLParser } from 'fast-xml-parser'
-import { appEnv } from '@config/env'
-import { logger } from '@utils/logger'
-import AppRouter from '@routes/index'
-import morganMiddleware from '@middlewares/morgan.middleware'
+import { appEnv } from './config/env'
+import { logger } from './utils/logger'
+import AppRouter from './routes/index'
+import morganMiddleware from './middlewares/morgan.middleware'
 
 const app = express()
 

@@ -1,6 +1,6 @@
 import express from 'express'
 
-import flareSolversController from '@controllers/flare-solvers.controller'
+import flareSolversController from '../controllers/flare-solvers.controller'
 
 const FlareSolverRouter = express.Router()
 

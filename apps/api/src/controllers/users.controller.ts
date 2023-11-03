@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from 'express'
 
-import AppError from '@utils/app-error'
-import { findUniqueUser, updateUser } from '@services/user.service'
-import { generateHashedPassword, validatePassword } from '@utils/bcrypt'
-import UserDTO from '@dtos/user.dto'
+import UserDTO from '../dtos/user.dto'
+import AppError from '../utils/app-error'
+import { findUniqueUser, updateUser } from '../services/user.service'
+import { generateHashedPassword, validatePassword } from '../utils/bcrypt'
 
 const userDTO = new UserDTO()
 

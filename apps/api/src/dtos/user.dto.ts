@@ -1,4 +1,4 @@
-import { userSchema } from '@schemas/user.schema'
+import { userSchema } from '../schemas/user.schema'
 import { TypeOf } from 'zod'
 
 type UserDTOType = {

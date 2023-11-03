@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from 'express'
 import { omit } from 'lodash'
 import { excludedFields, findUniqueUser } from '../services/user.service'
-import AppError from '@utils/app-error'
-import redisClient from '@utils/connect-redis'
-import { verifyJwt } from '@utils/jwt'
+import AppError from '../utils/app-error'
+import redisClient from '../utils/connect-redis'
+import { verifyJwt } from '../utils/jwt'
 
 export const deserializeUser = async (req: Request, res: Response, next: NextFunction) => {
   try {

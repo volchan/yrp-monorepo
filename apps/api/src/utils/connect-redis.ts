@@ -1,5 +1,6 @@
-import { appEnv } from '@config/env'
 import { createClient } from 'redis'
+
+import { appEnv } from '../config/env'
 
 const redisClient = createClient({
   url: appEnv.REDIS_URL,

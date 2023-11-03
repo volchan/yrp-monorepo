@@ -16,7 +16,3 @@
 //  provider = "postgresql"
 //  url      = env("DATABASE_URL")
 //}
-//generator prismaClassGenerator {
-//  provider = "prisma-class-generator"
-//  output = "../src/generated/prisma-client"
-//}

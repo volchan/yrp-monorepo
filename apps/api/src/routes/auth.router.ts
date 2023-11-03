@@ -5,11 +5,11 @@ import {
   logoutUserHandler,
   refreshAccessTokenHandler,
   registerUserHandler,
-} from '@controllers/auth.controller'
-import { deserializeUser } from '@middlewares/deserialize-user.middleware'
-import { requireUser } from '@middlewares/require-user.middleware'
-import { validate } from '@middlewares/validate.middleware'
-import { loginUserSchema, createUserSchema } from '@schemas/user.schema'
+} from '../controllers/auth.controller'
+import { validate } from '../middlewares/validate.middleware'
+import { requireUser } from '../middlewares/require-user.middleware'
+import { deserializeUser } from '../middlewares/deserialize-user.middleware'
+import { loginUserSchema, createUserSchema } from '../schemas/user.schema'
 
 const AuthRouter = express.Router()
 

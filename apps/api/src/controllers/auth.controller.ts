@@ -1,14 +1,14 @@
+import { Prisma } from 'database'
 import { CookieOptions, NextFunction, Request, Response } from 'express'
 
-import config from '@config/redis'
-import AppError from '@utils/app-error'
-import { Prisma } from '@prisma/client'
-import redisClient from '@utils/connect-redis'
-import { signJwt, verifyJwt } from '@utils/jwt'
-import { LoginUserInput, CreateUserInput } from '@schemas/user.schema'
-import { createUser, findUniqueUser, signTokens } from '@services/user.service'
-import { generateHashedPassword, generateVerificationCode, validatePassword } from '@utils/bcrypt'
-import UserDTO from '@dtos/user.dto'
+import config from '../config/redis'
+import UserDTO from '../dtos/user.dto'
+import AppError from '../utils/app-error'
+import redisClient from '../utils/connect-redis'
+import { signJwt, verifyJwt } from '../utils/jwt'
+import { LoginUserInput, CreateUserInput } from '../schemas/user.schema'
+import { createUser, findUniqueUser, signTokens } from '../services/user.service'
+import { generateHashedPassword, generateVerificationCode, validatePassword } from '../utils/bcrypt'
 
 const userDTO = new UserDTO()
 

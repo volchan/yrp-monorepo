@@ -1,5 +1,3 @@
-import { NextFunction, Request, Response } from 'express'
-
 export default class AppError extends Error {
   status: string
   isOperational: boolean

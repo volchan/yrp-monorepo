@@ -1,0 +1,23 @@
+{
+  "name": "database",
+  "main": "index.js",
+  "types": "index.ts",
+  "scripts": {
+    "db:push": "npx prisma db push --skip-generate",
+    "db:merge": "npx prisma-multischema",
+    "db:generate": "npx prisma generate",
+    "db:migrate": "npx prisma migrate dev",
+    "db:studio": "npx prisma studio",
+    "db:reset": "npx prisma migrate reset --force",
+    "db:seed": "ts-node -r tsconfig-paths/register -r dotenv-expand/config prisma/seed.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.5.2",
+    "eslint-config-custom": "*",
+    "prettier-config-custom": "*",
+    "rimraf": "^5.0.5"
+  },
+  "devDependencies": {
+    "prisma-multischema": "^1.1.4"
+  }
+}

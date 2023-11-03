@@ -1,30 +1,30 @@
-import { Prisma, User } from '@prisma/client'
+import { Prisma } from 'database'
 
-import db from '@utils/db'
-import config from '@config/redis'
-import { signJwt } from '@utils/jwt'
-import redisClient from '@utils/connect-redis'
+import db from '../utils/db'
+import config from '../config/redis'
+import { signJwt } from '../utils/jwt'
+import redisClient from '../utils/connect-redis'
 
 export const excludedFields = ['password', 'verified', 'verificationCode']
 
 export const createUser = async (input: Prisma.UserCreateInput) => {
-  return (await db.user.create({
+  return await db.user.create({
     data: input,
-  })) as User
+  })
 }
 
 export const updateUser = async (where: Prisma.UserWhereUniqueInput, input: Prisma.UserUpdateInput) => {
-  return (await db.user.update({
+  return await db.user.update({
     where,
     data: input,
-  })) as User
+  })
 }
 
 export const findUniqueUser = async (where: Prisma.UserWhereUniqueInput, select?: Prisma.UserSelect) => {
-  return (await db.user.findUnique({
+  return await db.user.findUnique({
     where,
     select,
-  })) as User
+  })
 }
 
 export const signTokens = async (user: Prisma.UserCreateInput) => {

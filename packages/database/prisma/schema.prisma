@@ -1,4 +1,4 @@
-//🧩Don't Edit this file.✨Generated in Thu Nov 02 2023 15:38:04 GMT+0100 (Central European Standard Time)✨
+//🧩Don't Edit this file.✨Generated in Fri Nov 03 2023 16:59:05 GMT+0100 (Central European Standard Time)✨
 
 generator client {
   provider = "prisma-client-js"
@@ -7,11 +7,6 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-}
-
-generator prismaClassGenerator {
-  provider = "prisma-class-generator"
-  output   = "../src/generated/prisma-client"
 }
 
 model User {

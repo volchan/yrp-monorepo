@@ -1,9 +1,9 @@
 import express from 'express'
 
 import HomeRouter from './home.router'
-import FlareSolverRouter from './flare-solver.router'
 import AuthRouter from './auth.router'
 import UserRouter from './user.router'
+import FlareSolverRouter from './flare-solver.router'
 
 const AppRouter = express.Router()
 

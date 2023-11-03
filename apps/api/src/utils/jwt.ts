@@ -1,6 +1,6 @@
 import jwt, { SignOptions } from 'jsonwebtoken'
 
-import { appEnv } from '@config/env'
+import { appEnv } from '../config/env'
 
 export const signJwt = (
   payload: Object,

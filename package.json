@@ -1,5 +1,8 @@
 {
   "private": true,
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {},
   "devDependencies": {
     "dotenv-cli": "latest",
@@ -12,8 +15,5 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ],
-  "dependencies": {
-    "prisma-class-generator": "^0.2.8"
-  }
+  ]
 }

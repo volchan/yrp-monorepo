@@ -1,5 +1,13 @@
-import { PrismaClient } from '@prisma/client'
-import { logger } from '@utils/logger'
+import { PrismaClient } from 'database'
+import { logger } from './logger'
+
+export type QueryEvent = {
+  timestamp: Date
+  query: string
+  params: string
+  duration: number
+  target: string
+}
 
 const db = new PrismaClient({
   log: [
@@ -22,7 +30,7 @@ const db = new PrismaClient({
   ],
 })
 
-db.$on('query', e => {
+db.$on('query', (e: QueryEvent) => {
   logger.info(`Query: ${e.query}`)
   logger.info(`Params: ${e.params}`)
   logger.info(`Duration: ${e.duration}ms`)

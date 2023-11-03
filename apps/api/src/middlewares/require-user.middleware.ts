@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express'
-import AppError from '@utils/app-error'
+import AppError from '../utils/app-error'
 
 export const requireUser = (req: Request, res: Response, next: NextFunction) => {
   try {
